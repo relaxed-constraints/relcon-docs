@@ -27,6 +27,7 @@ jobs:
           mkdir -p /tmp/relcon-docs-example/docs
           cd /tmp/relcon-docs-example
           /tmp/relcon-docs-wheel/bin/relcon-docs configure
+          test -f .github/workflows/docs.yml
           /tmp/relcon-docs-wheel/bin/relcon-docs configure --check
           echo '# Wheel smoke test' > docs/index.md
           /tmp/relcon-docs-wheel/bin/zensical build --strict

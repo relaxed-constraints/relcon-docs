@@ -22,6 +22,7 @@ build-backend = "hatchling.build"
 
 [dependency-groups]
 dev = ["pytest>=8"]
+docs = [] # The package itself already supplies the documentation tools.
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/relcon_docs"]

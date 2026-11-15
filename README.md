@@ -26,12 +26,13 @@ Convert and remove any `zensical.toml` before configuring: Zensical prefers it o
 
 | File | Owner |
 | --- | --- |
+| `.github/workflows/docs.yml` | Project: deployment triggers and reusable workflow revision |
 | `mkdocs.yml` | Project: metadata, navigation, API paths, Markdown-export sections and overrides |
 | `.relcon-docs/base.yml` | Package: theme, Markdown extensions and API-rendering defaults |
 | `docs/stylesheets/relcon-docs.css` | Package: labeled copy-button styling |
 | `.relcon-docs/state.json` | Tool: applied version and hashes for detecting manual edits |
 
-Commit all four files. Configuration is explicit: installing or upgrading the
+Commit these files. Configuration is explicit: installing or upgrading the
 dependency never rewrites project files. Builds and previews use ordinary
 `zensical` commands, without a wrapper or sibling checkout.
 
@@ -52,7 +53,7 @@ with different contents also conflicts. Identical contents can be adopted safely
 Move customizations into project overrides or a separate stylesheet. To explicitly
 replace conflicting managed files, use `configure --force`; inspect the proposed
 changes first with `configure --dry-run --force`. Force never rewrites an existing
-`mkdocs.yml`. Invalid state files must be restored from Git; force does not bypass
+`mkdocs.yml` or `.github/workflows/docs.yml`. Invalid state files must be restored from Git; force does not bypass
 state validation or symlink protection.
 
 Each file replacement is atomic; the full set is not a filesystem transaction.
@@ -85,7 +86,75 @@ should explicitly configure `llmstxt` as above.
 
 This first version supports the standard `docs/` source directory and direct
 inheritance from `.relcon-docs/base.yml`. It does not migrate arbitrary configurations,
-prune old stylesheets, or modify workflow files.
+prune old stylesheets, or modify existing workflow files.
+
+## GitHub Pages deployment
+
+`configure` creates `.github/workflows/docs.yml` **only when absent**. The starter
+enables manual deployment (`workflow_dispatch`) and includes commented examples
+for pushes to `main` and published releases. After creation the file belongs to the
+project: rerunning configure, including with `--force`, leaves it byte-for-byte
+unchanged. It is not included in the managed-file hashes. A missing starter is
+reported by `--check` and shown by `--dry-run`; ordinary configure recreates it.
+
+The starter calls the shared
+[`deploy-docs.yml`](https://github.com/relaxed-constraints/relcon-docs/blob/main/.github/workflows/deploy-docs.yml)
+workflow. It checks out the **caller repository and triggering revision**, installs
+its locked `docs` dependency group, checks managed configuration, runs a strict
+Zensical build, uploads `site/`, and deploys it to GitHub Pages. It does not update
+configuration during deployment.
+
+Choose the project's policy by editing the starter's `on` mapping. For BONDI,
+keep automatic deployment limited to published releases:
+
+```yaml
+on:
+  workflow_dispatch:
+  release:
+    types: [published]
+```
+
+A consumer project can instead publish on each push to `main`:
+
+```yaml
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+```
+
+The caller grants `contents: read`, `pages: write` and `id-token: write`.
+The build job uses read-only repository access; the deployment job gets Pages
+permissions and uses the `github-pages` environment. Deployments share a concurrency
+group and do not cancel an in-progress deployment.
+
+### Repository setup and workflow updates
+
+- Set **Settings → Pages → Source → GitHub Actions** once in each repository.
+- Set the project's `site_url` to its published URL before deploying.
+- Commit `uv.lock`, provide a `docs` dependency group, and use the standard
+  `docs/` source and `site/` output directories.
+- For release deployment, allow the release tags under the `github-pages`
+  environment's deployment protection rules.
+- When an existing deployment workflow uses another name (such as `pages.yml`),
+  consolidate it with the starter before enabling automatic triggers. Configure
+  does not remove or alter other workflows.
+
+The starter references `@main`; use a reviewed full commit SHA for reproducible
+deployment tooling. No `v1` tag is assumed. The workflow revision and Python package
+dependency are independent: upgrading the package never rewrites the caller's
+workflow reference or triggers.
+
+Optional caller job inputs are `python-version` (default `"3.11"`) and
+`uv-version` (default `"0.13.6"`). For example:
+
+```yaml
+jobs:
+  docs:
+    uses: relaxed-constraints/relcon-docs/.github/workflows/deploy-docs.yml@main
+    with:
+      python-version: "3.12"
+```
 
 ## CLI reference
 

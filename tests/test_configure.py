@@ -191,3 +191,64 @@ def test_actual_build_exports_markdown_and_renders_api(tmp_path):
     assert "Nested content" in (site / "guides/nested/index.md").read_text()
     assert "data-md-copy-url" in (site / "guides/nested/index.html").read_text()
     assert (site / "stylesheets/relcon-docs.css").read_bytes() == cli.managed_assets()[cli.CSS]
+
+
+def test_starter_workflow_is_manual_only_and_project_owned(tmp_path):
+    assert run(tmp_path) == 0
+    workflow = tmp_path / cli.WORKFLOW
+    # BaseLoader keeps GitHub's "on" key as a string instead of a YAML 1.1 boolean.
+    config = yaml.load(workflow.read_text(), Loader=yaml.BaseLoader)
+    assert set(config["on"]) == {"workflow_dispatch"}
+    assert "deploy-docs.yml@main" in config["jobs"]["docs"]["uses"]
+    state = json.loads((tmp_path / cli.STATE).read_text())
+    assert cli.WORKFLOW not in state["files"]
+
+
+@pytest.mark.parametrize(
+    "content",
+    [
+        """# Custom release workflow
+on:
+  release:
+    types: [published]
+""",
+        """# Custom consumer workflow
+on:
+  push:
+    branches: [main]
+""",
+        "",  # Even an empty existing file belongs to the user.
+    ],
+)
+def test_existing_workflow_is_untouched_in_all_modes(tmp_path, content):
+    workflow = tmp_path / cli.WORKFLOW
+    workflow.parent.mkdir(parents=True)
+    workflow.write_text(content)
+    original_mtime = workflow.stat().st_mtime_ns
+    for args in [(), ("--force",), ("--dry-run",), ("--check",)]:
+        assert run(tmp_path, *args) == 0
+        assert workflow.read_text() == content
+        assert workflow.stat().st_mtime_ns == original_mtime
+
+
+def test_workflow_adoption_on_upgrade_and_dry_run(tmp_path, capsys):
+    assert run(tmp_path) == 0
+    (tmp_path / cli.WORKFLOW).unlink()
+    before = snapshot(tmp_path)
+    assert run(tmp_path, "--check") == 1
+    assert run(tmp_path, "--dry-run") == 0
+    assert f"Create {cli.WORKFLOW}" in capsys.readouterr().out
+    assert snapshot(tmp_path) == before
+    assert run(tmp_path) == 0
+    assert (tmp_path / cli.WORKFLOW).is_file()
+
+
+def test_workflow_symlink_blocks_all_writes(tmp_path):
+    outside = tmp_path / "outside"
+    outside.mkdir()
+    project = tmp_path / "project"
+    project.mkdir()
+    (project / ".github").symlink_to(outside, target_is_directory=True)
+    assert run(project, "--force") == 2
+    assert not (project / cli.BASE).exists()
+    assert list(outside.iterdir()) == []

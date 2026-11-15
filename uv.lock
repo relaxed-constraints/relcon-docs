@@ -494,6 +494,7 @@ requires-dist = [
 
 [package.metadata.requires-dev]
 dev = [{ name = "pytest", specifier = ">=8" }]
+docs = []
 
 [[package]]
 name = "ruff"

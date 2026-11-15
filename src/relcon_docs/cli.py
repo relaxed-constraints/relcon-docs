@@ -16,6 +16,7 @@ import yaml
 BASE = ".relcon-docs/base.yml"
 STATE = ".relcon-docs/state.json"
 CSS = "docs/stylesheets/relcon-docs.css"
+WORKFLOW = ".github/workflows/docs.yml"
 
 
 class ConfigurationError(Exception):
@@ -142,6 +143,7 @@ def configure(root: Path, *, dry_run: bool, check: bool, force: bool) -> int:
     paths = {name: safe_path(root, name) for name in [*assets, STATE]}
     baseline = read_state(paths[STATE], assets)
     starter = project_config(root)
+    workflow_path = safe_path(root, WORKFLOW)
     changes = {}
     conflicts = []
 
@@ -159,6 +161,8 @@ def configure(root: Path, *, dry_run: bool, check: bool, force: bool) -> int:
 
     if starter is not None:
         changes["mkdocs.yml"] = starter
+    if not workflow_path.exists():
+        changes[WORKFLOW] = files("relcon_docs").joinpath("assets/docs.yml").read_bytes()
     state = {
         "schema": 1,
         "package_version": version("relcon-docs"),
