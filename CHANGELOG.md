@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 0.1.0 — 2026-11-15
+
+- Enable heading permalinks with the paragraph symbol and descriptive link titles.
+
 - Sort API members alphabetically and exclude underscore-prefixed members by default.
 
 - Publish the self-hosted documentation showcase with Markdown, diagrams, equations

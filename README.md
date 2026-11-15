@@ -7,6 +7,16 @@ Install this package as a **documentation dependency**. It supplies Zensical, th
 Python API handler and formatter, shared modern-theme settings, and copy-button CSS.
 It has no dependency on BONDI or Yanex.
 
+## Install
+
+```sh
+uv add --group docs relcon-docs
+```
+
+Or install with `python -m pip install relcon-docs`. Keep uv.lock committed for
+reproducible builds. Upgrade with `uv lock --upgrade-package relcon-docs`, sync
+the docs group, and run `relcon-docs configure` to refresh shared assets.
+
 ## Configure a project
 
 Once installed in your project's environment:

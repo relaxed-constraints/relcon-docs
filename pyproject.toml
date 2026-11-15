@@ -13,6 +13,11 @@ dependencies = [
     "ruff>=0.9",
 ]
 
+[project.urls]
+Homepage = "https://relaxed-constraints.github.io/relcon-docs/"
+Repository = "https://github.com/relaxed-constraints/relcon-docs"
+Issues = "https://github.com/relaxed-constraints/relcon-docs/issues"
+
 [project.scripts]
 relcon-docs = "relcon_docs.cli:main"
 

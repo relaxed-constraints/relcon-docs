@@ -131,3 +131,9 @@ def greet(name: str) -> str:
 === "Notebook"
 
     Use a notebook to explore results interactively.
+
+## Heading links
+
+Hover over a heading to reveal its ¶ permalink. Click it to navigate to that
+section, or copy the link address to share a direct link. These links are enabled
+in the shared defaults and need no page-specific Markdown.

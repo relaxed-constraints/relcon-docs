@@ -7,6 +7,16 @@ Install this package as a **documentation dependency**. It supplies Zensical, th
 Python API handler and formatter, shared modern-theme settings, and copy-button CSS.
 It has no dependency on BONDI or Yanex.
 
+## Install
+
+```sh
+uv add --group docs relcon-docs
+```
+
+Or install with `python -m pip install relcon-docs`. Keep uv.lock committed for
+reproducible builds. Upgrade with `uv lock --upgrade-package relcon-docs`, sync
+the docs group, and run `relcon-docs configure` to refresh shared assets.
+
 ## Configure a project
 
 Once installed in your project's environment:
@@ -233,3 +243,20 @@ excluded from automatic member listings, including double-underscore names.
 Projects can override `members_order` and `filters` under
 `plugins.mkdocstrings.handlers.python.options` in `mkdocs.yml`, or on an
 individual API directive when a specific private or special method needs documenting.
+
+## Publishing releases
+
+Publication uses GitHub Trusted Publishing via `.github/workflows/publish.yml`
+and the `pypi` environment. A published GitHub Release triggers tests, lint, a
+strict docs build, an installed-wheel smoke test, tag/version validation and
+distribution validation before uploading the wheel and source distribution.
+
+For a release, update the package version and lockfile, move Unreleased notes
+into the dated release section, and refresh the self-hosted configuration.
+After review and merge, create a matching `vX.Y.Z` tag and publish its GitHub
+Release. Verify the PyPI version and a fresh installation afterwards. Never
+replace an existing release's files; fixes use a new version.
+
+Consumers install the Python package from PyPI. GitHub reusable workflows still
+use a Git reference: pin a reviewed SHA or release tag independently of the Python
+dependency. Updating the dependency does not rewrite project-owned workflows.

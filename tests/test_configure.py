@@ -1,5 +1,6 @@
 """Exercise ownership, upgrades and actual Zensical builds."""
 
+import html as html_module
 import json
 import subprocess
 
@@ -194,6 +195,10 @@ def test_actual_build_exports_markdown_and_renders_api(tmp_path, existing):
     assert result.returncode == 0, result.stdout + result.stderr
     site = tmp_path / "site"
     html = (site / "index.html").read_text()
+    assert 'href="#example"' in html
+    assert 'class="headerlink"' in html
+    assert 'title="Link to this section"' in html
+    assert "¶" in html_module.unescape(html)
     assert "sample.greet" in html
     assert 'class="admonition note"' in html
     assert '<details class="tip">' in html
