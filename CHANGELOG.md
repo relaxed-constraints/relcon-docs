@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Share accessible light/dark diagram colours for flowcharts and sequence roles,
+  with CSS properties for custom diagrams and legacy variable aliases.
+
 - Enable callouts, collapsible notes and Mermaid diagrams in shared defaults.
 
 - Enable Markdown exports and llms.txt in shared defaults for new and existing

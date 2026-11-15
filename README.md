@@ -114,8 +114,11 @@ graph LR
 ```
 ````
 
-Zensical initializes Mermaid on pages containing diagrams. Project-specific
-diagram colors and styles can remain in a separate local stylesheet.
+Zensical initializes Mermaid on pages containing diagrams. Shared light/dark colours apply to standard flowchart nodes, labels and connectors,
+and sequence actors, messages and notes. Custom diagrams can use the
+`--relcon-diagram-*` CSS properties; legacy `--jb-*` aliases remain supported.
+See the [diagram examples](https://relaxed-constraints.github.io/relcon-docs/diagrams/).
+Project-specific overrides can remain in a separate local stylesheet.
 If overriding `custom_fences`, include the Mermaid entry too: lists replace
 inherited lists.
 
