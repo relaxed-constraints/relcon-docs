@@ -15,6 +15,31 @@ flowchart LR
     Run --> Results[Inspect results]
 ```
 
+## Highlight a box
+
+Use the warm amber accent sparingly to draw attention to a particular step.
+The label identifies the focus too, so colour is not the only cue. The fill,
+border and text colours are paired for contrast in both themes.
+
+```mermaid
+block-beta
+    columns 3
+    Input["Prepare data"] Focus["Focus: run experiment"] Output["Inspect results"]
+    style Focus fill:var(--relcon-diagram-accent-bg),stroke:var(--relcon-diagram-accent-border),color:var(--relcon-diagram-accent-text)
+```
+
+Apply these three properties together to the box you want to highlight:
+
+```text
+fill:var(--relcon-diagram-accent-bg)
+stroke:var(--relcon-diagram-accent-border)
+color:var(--relcon-diagram-accent-text)
+```
+
+This example uses Mermaid's block-diagram syntax, which accepts CSS variables
+in style declarations. Flowchart style declarations currently reject `var(...)`.
+The accent means emphasis, not success, failure or warning.
+
 ## Sequence diagram
 
 Actors, messages and notes use the same visual roles.

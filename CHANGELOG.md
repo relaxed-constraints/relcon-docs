@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Add paired accent fill, border and text colours for highlighting diagram boxes,
+  with a light/dark example on the diagram-colours page.
+
 - Share accessible light/dark diagram colours for flowcharts and sequence roles,
   with CSS properties for custom diagrams and legacy variable aliases.
 

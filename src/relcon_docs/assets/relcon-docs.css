@@ -30,6 +30,9 @@
   --relcon-diagram-node-border: #59718f;
   --relcon-diagram-text: #223248;
   --relcon-diagram-edge: #526780;
+  --relcon-diagram-accent-bg: #fff0cc;
+  --relcon-diagram-accent-border: #a56a12;
+  --relcon-diagram-accent-text: #623a00;
 }
 
 [data-md-color-scheme="slate"] {
@@ -39,6 +42,9 @@
   --relcon-diagram-node-border: #8eaacb;
   --relcon-diagram-text: #eef3f9;
   --relcon-diagram-edge: #94a9c2;
+  --relcon-diagram-accent-bg: #513b18;
+  --relcon-diagram-accent-border: #e6b65c;
+  --relcon-diagram-accent-text: #fff0cd;
 }
 
 :root,

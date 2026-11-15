@@ -27,3 +27,12 @@ def test_diagram_contrast(scheme):
         assert contrast(colors["edge"], colors[surface]) >= 3
     for role in ("node", "frame"):
         assert contrast(colors[f"{role}-border"], colors[f"{role}-bg"]) >= 3
+
+
+@pytest.mark.parametrize("scheme", ["default", "slate"])
+def test_accent_contrast(scheme):
+    css = managed_assets()[CSS].decode()
+    block = re.search(r'\[data-md-color-scheme="' + scheme + r'"\]\s*\{([^}]+)', css)[1]
+    colors = dict(re.findall(r"--relcon-diagram-([\w-]+):\s*(#[0-9a-f]{6})", block))
+    assert contrast(colors["accent-text"], colors["accent-bg"]) >= 4.5
+    assert contrast(colors["accent-border"], colors["accent-bg"]) >= 3
