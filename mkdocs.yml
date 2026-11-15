@@ -4,7 +4,7 @@ site_url: https://relaxed-constraints.github.io/relcon-docs/
 site_description: Shared documentation tooling for Relaxed Constraints projects
 nav:
   - Guide and CLI reference: index.md
-  - Diagrams: diagrams.md
   - Markdown: markdown.md
-  - Equations: equations.md
+  - Diagrams: diagrams.md
   - Figures: figures.md
+  - Equations: equations.md
