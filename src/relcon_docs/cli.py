@@ -17,6 +17,7 @@ BASE = ".relcon-docs/base.yml"
 STATE = ".relcon-docs/state.json"
 CSS = "docs/stylesheets/relcon-docs.css"
 WORKFLOW = ".github/workflows/docs.yml"
+MATH = "docs/javascripts/relcon-docs-math.js"
 
 
 class ConfigurationError(Exception):
@@ -32,6 +33,7 @@ def managed_assets() -> dict[str, bytes]:
     return {
         BASE: assets.joinpath("base.yml").read_bytes(),
         CSS: assets.joinpath("relcon-docs.css").read_bytes(),
+        MATH: assets.joinpath("relcon-docs-math.js").read_bytes(),
     }
 
 
@@ -58,7 +60,7 @@ def read_state(path: Path, assets: dict[str, bytes]) -> dict[str, str]:
         if (
             state["schema"] != 1
             or not isinstance(hashes, dict)
-            or set(hashes) != set(assets)
+            or set(hashes) not in ({BASE, CSS}, set(assets))
             or not all(
                 isinstance(value, str)
                 and len(value) == 64

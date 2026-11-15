@@ -1,4 +1,21 @@
-# Diagram colours
+# Diagrams
+
+[Mermaid](https://mermaid.js.org/) turns text descriptions into diagrams in the
+browser. relcon-docs enables its fenced-block syntax and supplies light/dark
+colours. Put a block like this in any documentation page:
+
+````markdown
+```mermaid
+flowchart LR
+    Data[Dataset] --> Prepare[Prepare data]
+    Prepare --> Run[Run experiment]
+    Run --> Results[Inspect results]
+```
+````
+
+The code above is displayed as source; the same diagram is rendered below.
+Use flowcharts for pipelines, sequence diagrams for interactions, and block
+diagrams when precise grouping and explicit colour styling are useful.
 
 The shared palette uses muted blue-grey surfaces, readable labels and distinct
 borders. Switch between light and dark mode to review the examples below.

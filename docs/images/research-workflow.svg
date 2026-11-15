@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="240" viewBox="0 0 900 240" role="img" aria-labelledby="title desc">
+  <title id="title">A research workflow</title>
+  <desc id="desc">Data feeds an experiment, which produces results for analysis.</desc>
+  <rect width="900" height="240" rx="12" fill="#f5f7fa"/>
+  <g fill="none" stroke="#526780" stroke-width="3">
+    <path d="M250 120H335M565 120H650"/>
+    <path d="M325 112l10 8-10 8 M640 112l10 8-10 8"/>
+  </g>
+  <g stroke-width="2">
+    <rect x="40" y="55" width="210" height="130" rx="8" fill="#e8eff7" stroke="#59718f"/>
+    <rect x="345" y="55" width="210" height="130" rx="8" fill="#fff0cc" stroke="#a56a12"/>
+    <rect x="650" y="55" width="210" height="130" rx="8" fill="#e8eff7" stroke="#59718f"/>
+  </g>
+  <g font-family="sans-serif" text-anchor="middle" fill="#223248">
+    <text x="145" y="117" font-size="25">Data</text>
+    <text x="145" y="146" font-size="16">Collect and prepare</text>
+    <text x="450" y="117" font-size="25" fill="#623a00">Experiment</text>
+    <text x="450" y="146" font-size="16" fill="#623a00">Run and measure</text>
+    <text x="755" y="117" font-size="25">Results</text>
+    <text x="755" y="146" font-size="16">Inspect and explain</text>
+  </g>
+</svg>

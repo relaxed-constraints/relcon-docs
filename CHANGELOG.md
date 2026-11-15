@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Publish the self-hosted documentation showcase with Markdown, diagrams, equations
+  and figures; use the reusable deployment workflow on main and manual runs.
+- Add shared on-demand MathJax rendering and dark-theme Markdown-copy controls.
+
 - Add paired accent fill, border and text colours for highlighting diagram boxes,
   with a light/dark example on the diagram-colours page.
 

@@ -20,7 +20,7 @@ def contrast(first, second):
 @pytest.mark.parametrize("scheme", ["default", "slate"])
 def test_diagram_contrast(scheme):
     css = managed_assets()[CSS].decode()
-    block = re.search(r'\[data-md-color-scheme="' + scheme + r'"\]\s*\{([^}]+)', css)[1]
+    block = "\n".join(re.findall(r'\[data-md-color-scheme="' + scheme + r'"\]\s*\{([^}]+)', css))
     colors = dict(re.findall(r"--relcon-diagram-([\w-]+):\s*(#[0-9a-f]{6})", block))
     for surface in ("node-bg", "frame-bg"):
         assert contrast(colors["text"], colors[surface]) >= 4.5
@@ -32,7 +32,17 @@ def test_diagram_contrast(scheme):
 @pytest.mark.parametrize("scheme", ["default", "slate"])
 def test_accent_contrast(scheme):
     css = managed_assets()[CSS].decode()
-    block = re.search(r'\[data-md-color-scheme="' + scheme + r'"\]\s*\{([^}]+)', css)[1]
+    block = "\n".join(re.findall(r'\[data-md-color-scheme="' + scheme + r'"\]\s*\{([^}]+)', css))
     colors = dict(re.findall(r"--relcon-diagram-([\w-]+):\s*(#[0-9a-f]{6})", block))
     assert contrast(colors["accent-text"], colors["accent-bg"]) >= 4.5
     assert contrast(colors["accent-border"], colors["accent-bg"]) >= 3
+
+
+@pytest.mark.parametrize("scheme", ["default", "slate"])
+def test_copy_button_contrast(scheme):
+    css = managed_assets()[CSS].decode()
+    blocks = "\n".join(re.findall(r'\[data-md-color-scheme="' + scheme + r'"\]\s*\{([^}]+)', css))
+    colors = dict(re.findall(r"--relcon-copy-([\w-]+):\s*(#[0-9a-f]{6})", blocks))
+    for surface in ("bg", "hover"):
+        assert contrast(colors["text"], colors[surface]) >= 4.5
+        assert contrast(colors["border"], colors[surface]) >= 3

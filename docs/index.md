@@ -29,7 +29,8 @@ Convert and remove any `zensical.toml` before configuring: Zensical prefers it o
 | `.github/workflows/docs.yml` | Project: deployment triggers and reusable workflow revision |
 | `mkdocs.yml` | Project: metadata, navigation, API paths, Markdown-export sections and overrides |
 | `.relcon-docs/base.yml` | Package: theme, Markdown extensions and API-rendering defaults |
-| `docs/stylesheets/relcon-docs.css` | Package: labeled copy-button styling |
+| `docs/stylesheets/relcon-docs.css` | Package: copy buttons, diagrams and figures |
+| `docs/javascripts/relcon-docs-math.js` | Package: on-demand MathJax rendering |
 | `.relcon-docs/state.json` | Tool: applied version and hashes for detecting manual edits |
 
 Commit these files. Configuration is explicit: installing or upgrading the
@@ -217,3 +218,10 @@ uv build
 For a local consumer trial before publishing, install the built wheel in an isolated
 environment. The installed package contains all assets; consumers need no checkout
 of this repository.
+
+## Feature examples
+
+The documentation includes walkthroughs for Markdown, Mermaid diagrams, equations
+and figures. Equations use the shared Arithmatex configuration and a pinned
+MathJax renderer loaded from jsDelivr only on pages containing mathematics.
+The site itself uses relcon-docs and its reusable deployment workflow.

@@ -268,3 +268,15 @@ def test_workflow_symlink_blocks_all_writes(tmp_path):
     assert run(project, "--force") == 2
     assert not (project / cli.BASE).exists()
     assert list(outside.iterdir()) == []
+
+
+def test_upgrade_from_two_asset_state_adds_math_without_force(tmp_path):
+    assert run(tmp_path) == 0
+    state_path = tmp_path / cli.STATE
+    state = json.loads(state_path.read_text())
+    del state["files"][cli.MATH]
+    state_path.write_text(json.dumps(state))
+    (tmp_path / cli.MATH).unlink()
+    assert run(tmp_path) == 0
+    assert (tmp_path / cli.MATH).read_bytes() == cli.managed_assets()[cli.MATH]
+    assert run(tmp_path, "--check") == 0
