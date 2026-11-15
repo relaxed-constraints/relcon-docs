@@ -225,3 +225,11 @@ The documentation includes walkthroughs for Markdown, Mermaid diagrams, equation
 and figures. Equations use the shared Arithmatex configuration and a pinned
 MathJax renderer loaded from jsDelivr only on pages containing mathematics.
 The site itself uses relcon-docs and its reusable deployment workflow.
+
+### API member defaults
+
+API members are ordered alphabetically. Members whose names start with `_` are
+excluded from automatic member listings, including double-underscore names.
+Projects can override `members_order` and `filters` under
+`plugins.mkdocstrings.handlers.python.options` in `mkdocs.yml`, or on an
+individual API directive when a specific private or special method needs documenting.

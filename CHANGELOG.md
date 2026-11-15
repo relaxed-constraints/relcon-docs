@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Sort API members alphabetically and exclude underscore-prefixed members by default.
+
 - Publish the self-hosted documentation showcase with Markdown, diagrams, equations
   and figures; use the reusable deployment workflow on main and manual runs.
 - Add shared on-demand MathJax rendering and dark-theme Markdown-copy controls.
