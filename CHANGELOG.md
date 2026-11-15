@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Enable callouts, collapsible notes and Mermaid diagrams in shared defaults.
+
 - Enable Markdown exports and llms.txt in shared defaults for new and existing
   projects, without requiring local plugin configuration.
 

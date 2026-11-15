@@ -180,7 +180,12 @@ def test_actual_build_exports_markdown_and_renders_api(tmp_path, existing):
         '    """\n'
         '    return f"Hello {name}"\n'
     )
-    (tmp_path / "docs/index.md").write_text("# Example\n\n::: sample.greet\n")
+    (tmp_path / "docs/index.md").write_text(
+        "# Example\n\n::: sample.greet\n\n"
+        '!!! note "Shared callout"\n\n    Callout body.\n\n'
+        '??? tip "Shared details"\n\n    Details body.\n\n'
+        "```mermaid\ngraph LR\n    A --> B\n```\n"
+    )
     (tmp_path / "docs/guides").mkdir()
     (tmp_path / "docs/guides/nested.md").write_text("# Nested guide\n\nNested content.\n")
     result = subprocess.run(
@@ -190,6 +195,11 @@ def test_actual_build_exports_markdown_and_renders_api(tmp_path, existing):
     site = tmp_path / "site"
     html = (site / "index.html").read_text()
     assert "sample.greet" in html
+    assert 'class="admonition note"' in html
+    assert '<details class="tip">' in html
+    assert "<summary>Shared details</summary>" in html
+    assert 'class="mermaid"' in html
+    assert "A --" in html
     assert "data-md-copy-url" in html
     assert "stylesheets/relcon-docs.css" in html
     assert "Return a greeting" in (site / "index.md").read_text()

@@ -93,6 +93,32 @@ This first version supports the standard `docs/` source directory and direct
 inheritance from `.relcon-docs/base.yml`. It does not migrate arbitrary configurations,
 prune old stylesheets, or modify existing workflow files.
 
+## Callouts, collapsible notes and diagrams
+
+Shared defaults enable `admonition`, `pymdownx.details` and Mermaid fenced
+blocks. Projects do not need local extension configuration for these features.
+For example:
+
+````markdown
+!!! note "Research note"
+
+    Record assumptions beside your results.
+
+??? tip "Show details"
+
+    Put optional explanations here.
+
+```mermaid
+graph LR
+    Data --> Experiment --> Results
+```
+````
+
+Zensical initializes Mermaid on pages containing diagrams. Project-specific
+diagram colors and styles can remain in a separate local stylesheet.
+If overriding `custom_fences`, include the Mermaid entry too: lists replace
+inherited lists.
+
 ## GitHub Pages deployment
 
 `configure` creates `.github/workflows/docs.yml` **only when absent**. The starter
