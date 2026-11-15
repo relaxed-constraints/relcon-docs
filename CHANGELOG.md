@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Enable Markdown exports and llms.txt in shared defaults for new and existing
+  projects, without requiring local plugin configuration.
+
 - Add a reusable GitHub Pages deployment workflow with caller-owned triggers.
 - Create a manual-only starter docs.yml on configuration when absent; preserve
   existing workflow contents, even with --force.

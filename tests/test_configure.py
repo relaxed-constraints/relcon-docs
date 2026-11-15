@@ -158,11 +158,17 @@ def test_state_hashes_record_installed_assets(tmp_path):
     }
 
 
-def test_actual_build_exports_markdown_and_renders_api(tmp_path):
+@pytest.mark.parametrize("existing", [False, True])
+def test_actual_build_exports_markdown_and_renders_api(tmp_path, existing):
+    if existing:
+        (tmp_path / "mkdocs.yml").write_text(
+            "INHERIT: .relcon-docs/base.yml\n"
+            "site_name: Existing project\nsite_url: https://example.org/\n"
+        )
     assert run(tmp_path) == 0
     project = tmp_path / "mkdocs.yml"
     config = yaml.safe_load(project.read_text())
-    config["plugins"]["mkdocstrings"] = {"handlers": {"python": {"paths": ["."]}}}
+    config.setdefault("plugins", {})["mkdocstrings"] = {"handlers": {"python": {"paths": ["."]}}}
     project.write_text(yaml.safe_dump(config, sort_keys=False))
     (tmp_path / "sample.py").write_text(
         "def greet(name: str) -> str:\n"

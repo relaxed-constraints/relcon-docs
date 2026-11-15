@@ -90,9 +90,6 @@ def project_config(root: Path) -> bytes | None:
                 {
                     "site_name": root.name,
                     "site_url": "http://127.0.0.1:8000/",
-                    "plugins": {
-                        "llmstxt": {"sections": {"Documentation": ["*.md"]}},
-                    },
                 },
                 sort_keys=False,
             )

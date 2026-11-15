@@ -76,13 +76,18 @@ plugins:
         paths: [src]
   llmstxt:
     sections:
-      Guides: ["*.md"]
+      Documentation: ["*.md"]
       API reference: ["reference/**/*.md"]
 ```
 
-The copy-button feature is shared, but Markdown export sections belong to the
-project. The starter enables exports for all Markdown pages. Existing projects
-should explicitly configure `llmstxt` as above.
+Markdown exports and `llms.txt` are enabled in the shared defaults for all
+Markdown pages, including nested pages. Existing projects inherit them without
+adding a local plugin configuration. A valid project `site_url` is required.
+
+The shared index uses a `Documentation` section. Section mappings merge during
+inheritance: override `Documentation` to change its page patterns; adding a
+different section name retains the inherited section too. Most projects can omit
+`llmstxt` entirely. Set `plugins.llmstxt.enabled: false` to opt out.
 
 This first version supports the standard `docs/` source directory and direct
 inheritance from `.relcon-docs/base.yml`. It does not migrate arbitrary configurations,
