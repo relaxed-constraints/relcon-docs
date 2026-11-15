@@ -1,0 +1,37 @@
+[project]
+name = "relcon-docs"
+version = "0.1.0"
+description = "Shared documentation defaults, styling, and configuration tools for Zensical"
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{name = "Relaxed Constraints"}]
+dependencies = [
+    "PyYAML>=6,<7",
+    "zensical>=0.1.1,<0.2",
+    "mkdocstrings-python>=2.0.10",
+    "ruff>=0.9",
+]
+
+[project.scripts]
+relcon-docs = "relcon_docs.cli:main"
+
+[build-system]
+requires = ["hatchling>=1.26"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = ["pytest>=8"]
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/relcon_docs"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP"]

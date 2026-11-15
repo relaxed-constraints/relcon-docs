@@ -1,0 +1,10 @@
+INHERIT: .relcon-docs/base.yml
+site_name: relcon-docs
+site_url: https://relaxed-constraints.github.io/relcon-docs/
+site_description: Shared documentation tooling for Relaxed Constraints projects
+nav:
+  - Guide and CLI reference: index.md
+plugins:
+  llmstxt:
+    sections:
+      Documentation: ["*.md"]
