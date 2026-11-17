@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.1.4 — 2026-11-17
+
 - Use the same page-action typography and padding on presentation and ordinary pages.
 
 ## 0.1.3 — 2026-11-17
