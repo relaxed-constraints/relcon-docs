@@ -13,6 +13,7 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.collections import PolyCollection
+from matplotlib.transforms import Bbox
 
 OUTPUT = Path(__file__).resolve().parents[1] / "docs" / "images"
 
@@ -50,21 +51,34 @@ def main():
         axis.set_pane_color((1, 1, 1, 0))
         axis.line.set_color("#b6c0d0")
 
+    # The 3D axes' tight bbox includes empty space above and below the plot.
+    # Measure the rendered ink instead, and use the same crop for both formats.
+    fig.set_dpi(200)
+    fig.patch.set_alpha(0)
+    ax.patch.set_alpha(0)
+    fig.canvas.draw()
+    rgba = np.asarray(fig.canvas.buffer_rgba())
+    rows, columns = np.nonzero(rgba[:, :, 3])
+    height = rgba.shape[0]
+    padding = 0.1
+    crop = Bbox.from_extents(
+        columns.min() / fig.dpi - padding,
+        (height - rows.max() - 1) / fig.dpi - padding,
+        (columns.max() + 1) / fig.dpi + padding,
+        (height - rows.min()) / fig.dpi + padding,
+    )
+
     OUTPUT.mkdir(parents=True, exist_ok=True)
     fig.savefig(
         OUTPUT / "poisson-distributions.png",
         dpi=200,
         transparent=True,
-        bbox_inches="tight",
-        pad_inches=0.15,
-        bbox_extra_artists=(ax.zaxis.label,),
+        bbox_inches=crop,
     )
     fig.savefig(
         OUTPUT / "poisson-distributions.svg",
         transparent=True,
-        bbox_inches="tight",
-        pad_inches=0.15,
-        bbox_extra_artists=(ax.zaxis.label,),
+        bbox_inches=crop,
         metadata={"Date": None},
     )
     svg = OUTPUT / "poisson-distributions.svg"
