@@ -100,9 +100,9 @@ class to a paragraph while the neighbouring quotation remains unboxed.
 
 <div markdown>
 
-![Poisson distributions aligned left](images/poisson-distributions.png){ align=left width="220" }
+![Poisson distributions aligned left](images/poisson-distributions.png){ align=left width="250" }
 
-This image uses `align=left` and a width of 220 pixels. Text flows beside the
+This image uses `align=left` and a width of 250 pixels. Text flows beside the
 image when space permits. Use `align=right` to place it on the other side.
 Grids are preferable when both pictures should occupy equal columns; alignment
 is useful when prose should wrap around a small illustration.
@@ -112,7 +112,7 @@ is useful when prose should wrap around a small illustration.
 <div style="clear: both;"></div>
 
 ```markdown
-![Poisson distributions](images/poisson-distributions.png){ align=left width="220" }
+![Poisson distributions](images/poisson-distributions.png){ align=left width="250" }
 
 Text flows beside the image.
 ```
