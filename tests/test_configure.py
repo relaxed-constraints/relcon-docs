@@ -185,7 +185,12 @@ def test_actual_build_exports_markdown_and_renders_api(tmp_path, existing):
         "# Example\n\n::: sample.greet\n\n"
         '!!! note "Shared callout"\n\n    Callout body.\n\n'
         '??? tip "Shared details"\n\n    Details body.\n\n'
-        "```mermaid\ngraph LR\n    A --> B\n```\n"
+        "```mermaid\ngraph LR\n    A --> B\n```\n\n"
+        "![Workflow](workflow.svg)\n\n"
+        '<figure><img src="workflow.svg" alt="HTML workflow"></figure>\n'
+    )
+    (tmp_path / "docs/workflow.svg").write_text(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="50"></svg>'
     )
     (tmp_path / "docs/guides").mkdir()
     (tmp_path / "docs/guides/nested.md").write_text("# Nested guide\n\nNested content.\n")
@@ -199,6 +204,8 @@ def test_actual_build_exports_markdown_and_renders_api(tmp_path, existing):
     assert 'class="headerlink"' in html
     assert 'title="Link to this section"' in html
     assert "¶" in html_module.unescape(html)
+    assert html.count('class="glightbox"') == 2
+    assert 'href="workflow.svg"' in html
     assert "sample.greet" in html
     assert 'class="admonition note"' in html
     assert '<details class="tip">' in html

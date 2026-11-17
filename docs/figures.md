@@ -57,3 +57,13 @@ A web URL also works:
 That URL is illustrative. A real remote image must remain publicly accessible,
 permit embedding, and have suitable usage rights. Its availability depends on
 the external host; local images do not have that dependency.
+
+## Enlarge images
+
+Click an image to open the full-screen lightbox with zoom controls. Press Escape
+or select the close button to return to the page. Ordinary Markdown images and
+images in HTML figures are enabled automatically, including API examples.
+Right-click an image and choose **Open image in new tab** to view it alone.
+
+This uses Zensical's built-in GLightbox support; no additional dependency or
+image markup is needed. Shared configuration enables `plugins.glightbox`.

@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Enable built-in image lightboxes across documentation sites, including zoom
+  controls, without additional dependencies or image markup.
+- Recommend a bounded dependency range and document explicit lockfile upgrades.
+
 ## 0.1.0 — 2026-11-15
 
 - Enable heading permalinks with the paragraph symbol and descriptive link titles.

@@ -10,12 +10,14 @@ It has no dependency on BONDI or Yanex.
 ## Install
 
 ```sh
-uv add --group docs relcon-docs
+uv add --group docs 'relcon-docs>=0.1.0,<1.0.0'
 ```
 
 Or install with `python -m pip install relcon-docs`. Keep uv.lock committed for
 reproducible builds. Upgrade with `uv lock --upgrade-package relcon-docs`, sync
 the docs group, and run `relcon-docs configure` to refresh shared assets.
+The version range permits updates below 1.0; the lockfile still records the exact
+version used by builds. A range does not automatically refresh an existing lockfile.
 
 ## Configure a project
 
