@@ -66,7 +66,7 @@ body:has(.presentation-content.presentation-mode) .md-main .md-content > .md-con
   margin-bottom: 0.6rem;
 }
 
-.presentation-controls:has([hidden]) {
+.presentation-controls:has(.presentation-toggle[hidden]):not(:has([data-md-copy-url])) {
   display: none;
 }
 
@@ -107,10 +107,10 @@ body:has(.presentation-content.presentation-mode) .md-main .md-content > .md-con
   align-items: center;
   justify-content: center;
   gap: 0.25em;
-  height: 1.8rem;
-  padding: 0 0.65rem;
+  height: 1.44rem;
+  padding: 0 0.52rem;
   margin: 0;
-  font-size: 0.7rem;
+  font-size: 0.56rem;
   line-height: 1.4;
 }
 
@@ -291,4 +291,16 @@ body:has(.presentation-content.presentation-mode) .md-main .md-content > .md-con
 
 .presentation-content.presentation-mode .presentation-controls [data-md-copy-url] {
   display: none;
+}
+
+/* Hidden presentation controls must not override the normal copy action. */
+.md-typeset .presentation-controls > .presentation-toggle[hidden] {
+  display: none;
+}
+
+@media (max-width: 76.249em) {
+  .md-typeset .presentation-controls > .presentation-toggle,
+  .presentation-nav {
+    display: none;
+  }
 }

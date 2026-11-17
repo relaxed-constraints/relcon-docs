@@ -39,7 +39,12 @@ labels; other content receives a “Section N” label. Nested rules are ignored
 Use the arrows or Left/Right keys to navigate. **Esc** restores normal mode.
 Keyboard shortcuts leave editable controls, dialogs and image lightboxes alone.
 Use the browser's fullscreen menu to hide browser controls; this feature does not
-request fullscreen itself. Narrow screens retain the theme's responsive TOC behavior.
+request fullscreen itself. Presentation mode is available at desktop widths of 76.25em and above (about
+1,220 CSS pixels with the browser's default font size). On narrower viewports,
+the toggle and section controls disappear and the normal documentation layout
+returns, including Copy as Markdown. Your preference is preserved: widening the
+window restores presentation mode if it was enabled. Keyboard shortcuts are
+inactive while the viewport is narrow.
 
 ---
 

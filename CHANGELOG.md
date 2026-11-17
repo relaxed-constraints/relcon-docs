@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Restrict presentation mode to desktop viewports while preserving the preference
+  across resizing; use more compact page-action buttons.
+
 - Add opt-in presentation pages with a focused layout, section navigation, keyboard
   shortcuts and a site-scoped remembered preference.
 

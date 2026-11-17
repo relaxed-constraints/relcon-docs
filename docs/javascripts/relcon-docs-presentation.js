@@ -1,6 +1,9 @@
 (() => {
   let key = null;
+  // Keep the saved preference separate from the viewport's effective mode.
   let enabled = false;
+  const desktop = window.matchMedia('(min-width: 76.25em)');
+  const presenting = () => enabled && desktop.matches;
   let targets = [];
   let active = 0;
   let pending = false;
@@ -16,7 +19,7 @@
     const page = content();
     if (!page) return;
     const nav = page.querySelector('.presentation-nav');
-    nav.hidden = !enabled || targets.length < 2;
+    nav.hidden = !presenting() || targets.length < 2;
     if (nav.hidden) return;
     let index = 0;
     targets.forEach((target, i) => {
@@ -48,9 +51,9 @@
     const controls = page.querySelector('.presentation-controls');
     const copyButton = page.querySelector('[data-md-copy-url]');
     if (copyButton && copyButton.parentElement !== controls) controls.prepend(copyButton);
-    page.classList.toggle('presentation-mode', enabled);
-    button.setAttribute('aria-pressed', String(enabled));
-    button.hidden = false;
+    page.classList.toggle('presentation-mode', presenting());
+    button.setAttribute('aria-pressed', String(presenting()));
+    button.hidden = !desktop.matches;
 
     // Only top-level Markdown rules are boundaries, not rules inside examples.
     const first = page.querySelector(':scope > h1');
@@ -63,7 +66,7 @@
 
   function move(step) {
     const index = Math.max(0, Math.min(targets.length - 1, active + step));
-    if (!enabled || !targets[index] || index === active) return;
+    if (!presenting() || !targets[index] || index === active) return;
     const target = targets[index];
     const permalink = target.matches('h1,h2,h3,h4,h5,h6')
       ? target.querySelector('a.headerlink') : null;
@@ -78,7 +81,7 @@
 
   document.addEventListener('click', event => {
     if (!(event.target instanceof Element)) return;
-    if (event.target.closest('.presentation-toggle')) {
+    if (desktop.matches && event.target.closest('.presentation-toggle')) {
       enabled = !enabled;
       try { localStorage.setItem(key, String(enabled)); } catch (_) {}
       render();
@@ -88,7 +91,7 @@
   });
 
   document.addEventListener('keydown', event => {
-    if (!enabled || !content() || event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+    if (!presenting() || !content() || event.defaultPrevented || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
     if (event.target instanceof Element && event.target.closest('input, textarea, select, [contenteditable], [role="dialog"], [role="slider"], .glightbox-container')) return;
     if (document.querySelector('.glightbox-open, dialog[open]')) return;
     if (event.key === 'Escape') {
@@ -106,12 +109,13 @@
   });
 
   function onScroll() {
-    if (!enabled || pending) return;
+    if (!presenting() || pending) return;
     pending = true;
     requestAnimationFrame(() => { pending = false; updateNavigation(); });
   }
   window.addEventListener('scroll', onScroll, {passive: true});
   window.addEventListener('resize', onScroll);
+  desktop.addEventListener('change', render);
 
   if (typeof document$ !== 'undefined') document$.subscribe(render);
   else if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', render);

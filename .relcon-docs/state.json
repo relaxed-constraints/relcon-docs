@@ -2,10 +2,10 @@
   "files": {
     ".relcon-docs/base.yml": "bc9fee60dbf7a3a09d57fba90c0b19907b25c4ea5535e0c96d673ee5b4fbf247",
     "docs/javascripts/relcon-docs-math.js": "b8e7b15f419f4e52083570122f537ea7036bb529256d7f172aae51449d523661",
-    "docs/javascripts/relcon-docs-presentation.js": "46d0b9210beaf720b9881b37cef16b05c56b1e15f01a06c2637c51d3396f1a48",
+    "docs/javascripts/relcon-docs-presentation.js": "1b7135baad24d3249bd1ad1ed6935038ecce4bd017a43ac837fb2067651113b9",
     "docs/overrides/presentation.html": "963cb32fa9aa2507b8650f7d1772a1228b6ff99d215fbf43e56a746525c96054",
-    "docs/stylesheets/relcon-docs-presentation.css": "c8e5f319b470db341492c06381a463513732659acb21d12ae0a59504fcc767c9",
-    "docs/stylesheets/relcon-docs.css": "afbc6ba90ad4e80e9d79bdd89a4a825ac2ff62af4c213d228f678be87c810a85"
+    "docs/stylesheets/relcon-docs-presentation.css": "3a409a455671e58407ba2b8d99a72de8e44bfedb08b0b6ee8858952f28f32553",
+    "docs/stylesheets/relcon-docs.css": "f6588615524e17b03e791b208ee0dc72e624b037b47f98066b5ce20b3d9ec55a"
   },
   "package_version": "0.1.1",
   "schema": 1
