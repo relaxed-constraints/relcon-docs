@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.1.5 — 2026-11-17
+
 - Hide heading permalink symbols in presentation mode.
 
 - Slightly enlarge presentation text, including its table of contents and controls.
@@ -12,7 +14,7 @@
 
 - Let presentation slides size to their content, avoiding empty bottom space and unnecessary scrolling.
 
-- Trial one-section-at-a-time presentation mode with scrolling inside long sections
+- Add one-section-at-a-time presentation mode with scrolling inside long sections
   and TOC links that reveal hidden sections.
 
 - Replace image examples with a reproducible Matplotlib Poisson plot, supplied

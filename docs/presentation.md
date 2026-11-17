@@ -55,7 +55,7 @@ inactive while the viewport is narrow.
 
 ---
 
-## Installation and customization
+###  Installation and customization
 
 Run `uv run relcon-docs configure` after upgrading relcon-docs. It installs managed
 CSS, JavaScript and `presentation.html`, without rewriting existing `mkdocs.yml`.
@@ -73,7 +73,7 @@ Keep project-specific styling in separate files, not the managed assets.
 
 ## Plot example
 
-![Poisson probability distributions for mean rates one to eight](images/poisson-distributions.png)
+![Poisson probability distributions for mean rates one to eight](images/poisson-distributions.png){ width="60%"}
 
 Click the plot to enlarge it. The lightbox receives Esc before presentation mode.
 
