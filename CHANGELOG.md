@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Give H2 headings the same size and spacing as H1 in presentation mode, preserving the normal page hierarchy.
+
 - Hide the site footer while presenting.
 
 - Let presentation slides size to their content, avoiding empty bottom space and unnecessary scrolling.
