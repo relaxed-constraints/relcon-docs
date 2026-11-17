@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.1.6 — 2026-11-17
+
 - Enable Mark and Tilde Markdown extensions for highlighting, strikethrough and subscripts.
 
 ## 0.1.5 — 2026-11-17

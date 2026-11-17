@@ -1,6 +1,6 @@
 [project]
 name = "relcon-docs"
-version = "0.1.5"
+version = "0.1.6"
 description = "Shared documentation defaults, styling, and configuration tools for Zensical"
 readme = "README.md"
 requires-python = ">=3.11"
