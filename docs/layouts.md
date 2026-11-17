@@ -123,19 +123,19 @@ The empty clearing element above ends the float before the next example:
 <div style="clear: both;"></div>
 ```
 
-## Captions and lazy loading
+## Figure captions
 
 <figure markdown="span">
 
-![Poisson distributions with caption](images/poisson-distributions.png){ width="360" loading=lazy }
+![Poisson distributions with caption](images/poisson-distributions.png){ width="360" }
 
-<figcaption>Poisson probability distributions, sized with an attribute list and loaded lazily.</figcaption>
+<figcaption>Poisson probability distributions for mean rates from one to eight.</figcaption>
 </figure>
 
 ```markdown
 <figure markdown="span">
 
-![Poisson distributions](images/poisson-distributions.png){ width="360" loading=lazy }
+![Poisson distributions](images/poisson-distributions.png){ width="360" }
 
 <figcaption>A short explanation of the figure.</figcaption>
 </figure>
