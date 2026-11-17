@@ -34,6 +34,13 @@ def managed_assets() -> dict[str, bytes]:
         BASE: assets.joinpath("base.yml").read_bytes(),
         CSS: assets.joinpath("relcon-docs.css").read_bytes(),
         MATH: assets.joinpath("relcon-docs-math.js").read_bytes(),
+        "docs/stylesheets/relcon-docs-presentation.css": assets.joinpath(
+            "relcon-docs-presentation.css"
+        ).read_bytes(),
+        "docs/javascripts/relcon-docs-presentation.js": assets.joinpath(
+            "relcon-docs-presentation.js"
+        ).read_bytes(),
+        "docs/overrides/presentation.html": assets.joinpath("presentation.html").read_bytes(),
     }
 
 
@@ -60,7 +67,8 @@ def read_state(path: Path, assets: dict[str, bytes]) -> dict[str, str]:
         if (
             state["schema"] != 1
             or not isinstance(hashes, dict)
-            or set(hashes) not in ({BASE, CSS}, set(assets))
+            or not {BASE, CSS}.issubset(hashes)
+            or not set(hashes).issubset(assets)
             or not all(
                 isinstance(value, str)
                 and len(value) == 64
@@ -138,10 +146,26 @@ def atomic_write(path: Path, content: bytes) -> None:
 def configure(root: Path, *, dry_run: bool, check: bool, force: bool) -> int:
     if not root.is_dir():
         raise ConfigurationError(f"Project directory does not exist: {root}")
+    starter = project_config(root)
     assets = managed_assets()
+    config_path = root / "mkdocs.yml"
+    if config_path.exists():
+        config = yaml.compose(config_path.read_text())
+        theme = next((v for k, v in config.value if k.value == "theme"), None)
+        if isinstance(theme, yaml.MappingNode):
+            custom = next((v for k, v in theme.value if k.value == "custom_dir"), None)
+            if custom is not None:
+                if not isinstance(custom, yaml.ScalarNode) or custom.tag != "tag:yaml.org,2002:str":
+                    raise ConfigurationError(
+                        "theme.custom_dir must be a literal project-relative path."
+                    )
+                directory = Path(custom.value)
+                if directory.is_absolute() or ".." in directory.parts or not custom.value:
+                    raise ConfigurationError("theme.custom_dir must stay within the project.")
+                template = assets.pop("docs/overrides/presentation.html")
+                assets[str(directory / "presentation.html")] = template
     paths = {name: safe_path(root, name) for name in [*assets, STATE]}
     baseline = read_state(paths[STATE], assets)
-    starter = project_config(root)
     workflow_path = safe_path(root, WORKFLOW)
     changes = {}
     conflicts = []

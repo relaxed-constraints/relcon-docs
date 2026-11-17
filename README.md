@@ -245,3 +245,10 @@ excluded from automatic member listings, including double-underscore names.
 Projects can override `members_order` and `filters` under
 `plugins.mkdocstrings.handlers.python.options` in `mkdocs.yml`, or on an
 individual API directive when a specific private or special method needs documenting.
+
+### Presentation pages
+
+Opt in per page with `template: presentation.html` in YAML front matter, or put
+that setting in a directory's `.meta.yml`. Run `uv run relcon-docs configure`
+after upgrading to install the shared template, CSS and JavaScript. See the
+[Presentation mode guide](docs/presentation.md) for configuration and a live demo.

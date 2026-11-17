@@ -2,9 +2,12 @@
 # Put project overrides in mkdocs.yml. Paths are relative to that file.
 extra_css:
 - stylesheets/relcon-docs.css
+- stylesheets/relcon-docs-presentation.css
 extra_javascript:
 - javascripts/relcon-docs-math.js
+- javascripts/relcon-docs-presentation.js
 theme:
+  custom_dir: docs/overrides
   variant: modern
   font: false
   features:
@@ -46,6 +49,7 @@ markdown_extensions:
   pymdownx.tabbed:
     alternate_style: true
 plugins:
+  meta: {}
   glightbox: {}
   llmstxt:
     sections:

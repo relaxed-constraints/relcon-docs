@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Add opt-in presentation pages with a focused layout, section navigation, keyboard
+  shortcuts and a site-scoped remembered preference.
+
 ## 0.1.1 — 2026-11-17
 
 - Enable built-in image lightboxes across documentation sites, including zoom

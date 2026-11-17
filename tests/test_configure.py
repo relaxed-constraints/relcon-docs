@@ -292,3 +292,74 @@ def test_upgrade_from_two_asset_state_adds_math_without_force(tmp_path):
     assert run(tmp_path) == 0
     assert (tmp_path / cli.MATH).read_bytes() == cli.managed_assets()[cli.MATH]
     assert run(tmp_path, "--check") == 0
+
+
+def test_presentation_opt_in_and_custom_template_directory(tmp_path):
+    project = tmp_path / "mkdocs.yml"
+    project.write_text(
+        "INHERIT: .relcon-docs/base.yml\nsite_name: Example\n"
+        "site_url: https://example.org/project/\ntheme:\n  custom_dir: theme\n"
+    )
+    original = project.read_bytes()
+    (tmp_path / "theme").mkdir()
+    (tmp_path / "theme/custom.html").write_text("Project-owned template")
+    assert run(tmp_path) == 0
+    assert project.read_bytes() == original
+    assert (tmp_path / "theme/custom.html").read_text() == "Project-owned template"
+    assert (tmp_path / "theme/presentation.html").is_file()
+    assert not (tmp_path / "docs/overrides/presentation.html").exists()
+    assert run(tmp_path, "--check") == 0
+    (tmp_path / "docs/index.md").write_text("# Ordinary page\n")
+    (tmp_path / "docs/talk.md").write_text(
+        "---\ntemplate: presentation.html\n---\n# Talk\n\n---\n\n## Second section\n"
+    )
+    updates = tmp_path / "docs/updates"
+    updates.mkdir()
+    (updates / ".meta.yml").write_text("template: presentation.html\n")
+    (updates / "week.md").write_text("# Weekly update\n")
+    result = subprocess.run(
+        ["zensical", "build", "--strict"], cwd=tmp_path, capture_output=True, text=True
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    site = tmp_path / "site"
+    assert 'class="presentation-content"' not in (site / "index.html").read_text()
+    for page in ["talk/index.html", "updates/week/index.html"]:
+        html = (site / page).read_text()
+        assert 'class="presentation-content"' in html
+        assert 'aria-pressed="false"' in html
+        assert "data-presentation-root=" in html
+        assert "relcon-docs-presentation.js" in html
+        assert "relcon-docs-presentation.css" in html
+    assert 'href="#second-section"' in (site / "talk/index.html").read_text()
+
+
+def test_conflicting_presentation_template_blocks_all_writes(tmp_path):
+    template = tmp_path / "docs/overrides/presentation.html"
+    template.parent.mkdir(parents=True)
+    template.write_text("User-owned presentation")
+    before = snapshot(tmp_path)
+    assert run(tmp_path) == 2
+    assert snapshot(tmp_path) == before
+
+
+def test_upgrade_from_previous_release_adds_presentation_assets(tmp_path):
+    assert run(tmp_path) == 0
+    state_path = tmp_path / cli.STATE
+    state = json.loads(state_path.read_text())
+    for name in list(state["files"]):
+        if name not in {cli.BASE, cli.CSS, cli.MATH}:
+            del state["files"][name]
+            (tmp_path / name).unlink()
+    state_path.write_text(json.dumps(state))
+    assert run(tmp_path) == 0
+    assert run(tmp_path, "--check") == 0
+
+
+@pytest.mark.parametrize("directory", ["../outside", "/tmp/outside"])
+def test_external_template_directory_is_rejected(tmp_path, directory):
+    (tmp_path / "mkdocs.yml").write_text(
+        f"INHERIT: .relcon-docs/base.yml\ntheme:\n  custom_dir: {directory}\n"
+    )
+    before = snapshot(tmp_path)
+    assert run(tmp_path) == 2
+    assert snapshot(tmp_path) == before

@@ -1,7 +1,10 @@
 {
   "files": {
-    ".relcon-docs/base.yml": "edee39cef6edbc413c01b9f6a6daa8a925970f998b064572d1d93bad69e2dbb5",
+    ".relcon-docs/base.yml": "bc9fee60dbf7a3a09d57fba90c0b19907b25c4ea5535e0c96d673ee5b4fbf247",
     "docs/javascripts/relcon-docs-math.js": "b8e7b15f419f4e52083570122f537ea7036bb529256d7f172aae51449d523661",
+    "docs/javascripts/relcon-docs-presentation.js": "46d0b9210beaf720b9881b37cef16b05c56b1e15f01a06c2637c51d3396f1a48",
+    "docs/overrides/presentation.html": "963cb32fa9aa2507b8650f7d1772a1228b6ff99d215fbf43e56a746525c96054",
+    "docs/stylesheets/relcon-docs-presentation.css": "c8e5f319b470db341492c06381a463513732659acb21d12ae0a59504fcc767c9",
     "docs/stylesheets/relcon-docs.css": "afbc6ba90ad4e80e9d79bdd89a4a825ac2ff62af4c213d228f678be87c810a85"
   },
   "package_version": "0.1.1",
