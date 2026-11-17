@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.1.3 — 2026-11-17
+
 - Match the presentation toggle icon size to the Copy as Markdown icon.
 
 ## 0.1.2 — 2026-11-17
