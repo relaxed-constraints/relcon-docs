@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Trial one-section-at-a-time presentation mode with scrolling inside long sections
+  and TOC links that reveal hidden sections.
+
 - Replace image examples with a reproducible Matplotlib Poisson plot, supplied
   as PNG and SVG with a standalone generation script.
 

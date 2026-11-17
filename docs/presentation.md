@@ -33,9 +33,13 @@ Copy as Markdown button, and keeps the right-hand table of contents on desktop.
 The table of contents and section controls appear as floating panels. The sidebar
 title changes from “On this page” to “Table of contents” while presenting.
 
+Presentation mode shows only the current section. Long sections scroll naturally;
+the arrows switch sections and return to the top. Turning presentation mode off
+restores the whole document. TOC links reveal the section containing their heading.
+
 Use top-level Markdown `---` rules to separate sections. Put a heading immediately
-after each rule for a named section and anchor navigation. H1–H3 headings supply
-labels; other content receives a “Section N” label. Nested rules are ignored.
+after each rule for a named section and anchor navigation. The first heading in a section supplies its
+label; a section without headings receives a “Section N” label. Nested rules are ignored.
 
 Use the arrows or Left/Right keys to navigate. **Esc** restores normal mode.
 Keyboard shortcuts leave editable controls, dialogs and image lightboxes alone.
@@ -61,3 +65,39 @@ If your project overrides `extra_css` or `extra_javascript`, include both shared
 stylesheets (`relcon-docs.css`, `relcon-docs-presentation.css`) and both shared
 scripts (`relcon-docs-math.js`, `relcon-docs-presentation.js`) in those lists.
 Keep project-specific styling in separate files, not the managed assets.
+
+
+---
+
+## Plot example
+
+![Poisson probability distributions for mean rates one to eight](images/poisson-distributions.png)
+
+Click the plot to enlarge it. The lightbox receives Esc before presentation mode.
+
+---
+
+## Diagram example
+
+```mermaid
+flowchart LR
+    Question --> Experiment
+    Experiment --> Evidence
+    Evidence --> Discussion
+    Discussion --> Question
+```
+
+### Discussion prompts
+
+- What did we learn from the experiment?
+- Which assumptions need checking?
+- What should we try next?
+
+This subsection has its own TOC link inside the same slide. The rule inside the
+following quotation is not a slide boundary:
+
+> A useful result answers a question.
+>
+> ---
+>
+> A useful discussion identifies the next question.

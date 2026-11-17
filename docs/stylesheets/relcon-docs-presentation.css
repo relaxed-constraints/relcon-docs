@@ -45,7 +45,7 @@ body:has(.presentation-content.presentation-mode) .md-main .md-content > .md-con
 }
 
 /* Prose stays readable; tables and figures can use the full content width. */
-.presentation-content.presentation-mode > :is(p, ul, ol, blockquote) {
+.presentation-content.presentation-mode .presentation-slide > :is(p, ul, ol, blockquote) {
   max-width: 72ch;
 }
 
@@ -298,4 +298,33 @@ body:has(.presentation-content.presentation-mode) .md-main .md-content > .md-con
   .presentation-nav {
     display: none;
   }
+}
+
+/* Normal docs retain their original flow; presentation shows one section. */
+.presentation-slide { display: contents; }
+.presentation-slide[hidden] { display: none; }
+.presentation-content.presentation-mode .presentation-slide {
+  display: block;
+  min-height: calc(100dvh - 6rem);
+}
+.presentation-content.presentation-mode .presentation-slide[hidden],
+.presentation-content.presentation-mode > hr {
+  display: none;
+}
+.presentation-content.presentation-mode .presentation-slide > :first-child {
+  margin-top: 0;
+}
+body:has(.presentation-content.presentation-mode) .md-nav--secondary .md-nav__link {
+  color: var(--md-default-fg-color);
+}
+body:has(.presentation-content.presentation-mode) .md-nav--secondary .presentation-toc-active {
+  color: var(--md-accent-fg-color);
+  font-weight: 600;
+}
+@media print {
+  .presentation-content.presentation-mode .presentation-slide,
+  .presentation-content.presentation-mode .presentation-slide[hidden] {
+    display: contents;
+  }
+  .presentation-content.presentation-mode > hr { display: block; }
 }
