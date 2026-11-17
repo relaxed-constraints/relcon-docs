@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Label the presentation sidebar “Table of contents”, restoring the normal title
+  when presentation mode is inactive.
+
 - Restrict presentation mode to desktop viewports while preserving the preference
   across resizing; use more compact page-action buttons.
 

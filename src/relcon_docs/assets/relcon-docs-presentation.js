@@ -7,6 +7,7 @@
   let targets = [];
   let active = 0;
   let pending = false;
+  const tocLabels = new WeakMap();
 
 
   const content = () => document.querySelector('.presentation-content');
@@ -52,6 +53,25 @@
     const copyButton = page.querySelector('[data-md-copy-url]');
     if (copyButton && copyButton.parentElement !== controls) controls.prepend(copyButton);
     page.classList.toggle('presentation-mode', presenting());
+    document.querySelectorAll('.md-nav--secondary').forEach(nav => {
+      const title = nav.querySelector(':scope > .md-nav__title');
+      if (!title) return;
+      // Preserve the theme's label and icon, including translated titles.
+      if (!tocLabels.has(nav)) {
+        tocLabels.set(nav, {
+          aria: nav.getAttribute('aria-label'),
+          text: [...title.childNodes].filter(node => node.nodeType === Node.TEXT_NODE)
+            .map(node => [node, node.textContent]),
+        });
+      }
+      const original = tocLabels.get(nav);
+      original.text.forEach(([node, text], index) => {
+        node.textContent = presenting() ? (index === 0 ? 'Table of contents' : '') : text;
+      });
+      if (presenting()) nav.setAttribute('aria-label', 'Table of contents');
+      else if (original.aria !== null) nav.setAttribute('aria-label', original.aria);
+      else nav.removeAttribute('aria-label');
+    });
     button.setAttribute('aria-pressed', String(presenting()));
     button.hidden = !desktop.matches;
 

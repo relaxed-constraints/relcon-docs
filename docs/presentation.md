@@ -30,7 +30,8 @@ The directory and navigation tab can have any name. There is no required
 
 Presentation mode enlarges text, hides the site header, tabs, left navigation and
 Copy as Markdown button, and keeps the right-hand table of contents on desktop.
-The table of contents and section controls appear as floating panels.
+The table of contents and section controls appear as floating panels. The sidebar
+title changes from “On this page” to “Table of contents” while presenting.
 
 Use top-level Markdown `---` rules to separate sections. Put a heading immediately
 after each rule for a named section and anchor navigation. H1–H3 headings supply
