@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+- Hide the site footer while presenting.
+
+- Let presentation slides size to their content, avoiding empty bottom space and unnecessary scrolling.
+
 - Trial one-section-at-a-time presentation mode with scrolling inside long sections
   and TOC links that reveal hidden sections.
 
