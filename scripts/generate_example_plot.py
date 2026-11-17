@@ -19,10 +19,9 @@ OUTPUT = Path(__file__).resolve().parents[1] / "docs" / "images"
 
 def main():
     plt.rcParams.update({"font.family": "DejaVu Sans", "svg.hashsalt": "relcon-poisson"})
-    background = "#f7f8fc"
     ink = "#24334b"
-    fig = plt.figure(figsize=(11, 8), facecolor=background)
-    ax = fig.add_axes((0.03, 0.08, 0.92, 0.77), projection="3d", facecolor=background)
+    fig = plt.figure(figsize=(9, 7))
+    ax = fig.add_subplot(projection="3d")
     x = np.arange(0, 19)
     rates = np.arange(1, 9)
     colors = plt.colormaps["viridis"](np.linspace(0.1, 0.88, len(rates)))
@@ -48,29 +47,24 @@ def main():
     ax.view_init(elev=25, azim=-58)
     ax.set_box_aspect((1.6, 1.1, 0.8))
     for axis in (ax.xaxis, ax.yaxis, ax.zaxis):
-        axis.set_pane_color((0.91, 0.93, 0.96, 0.45))
+        axis.set_pane_color((1, 1, 1, 0))
         axis.line.set_color("#b6c0d0")
 
-    fig.text(0.07, 0.92, "The shape of chance", fontsize=27, weight="bold", color=ink)
-    fig.text(
-        0.07,
-        0.87,
-        "Poisson distributions · eight mean rates, one family",
-        fontsize=13,
-        color="#53627a",
-    )
-    fig.text(0.07, 0.055, r"$P(X=k)=e^{-\lambda}\lambda^k/k!$", fontsize=16, color=ink)
-    fig.text(
-        0.93,
-        0.055,
-        "Dots mark integer outcomes.\nRibbons connect them for visual comparison.",
-        ha="right",
-        fontsize=10,
-        color="#53627a",
-    )
     OUTPUT.mkdir(parents=True, exist_ok=True)
-    fig.savefig(OUTPUT / "poisson-distributions.png", dpi=200, facecolor=background)
-    fig.savefig(OUTPUT / "poisson-distributions.svg", facecolor=background, metadata={"Date": None})
+    fig.savefig(
+        OUTPUT / "poisson-distributions.png",
+        dpi=200,
+        transparent=True,
+        bbox_inches="tight",
+        pad_inches=0.15,
+    )
+    fig.savefig(
+        OUTPUT / "poisson-distributions.svg",
+        transparent=True,
+        bbox_inches="tight",
+        pad_inches=0.15,
+        metadata={"Date": None},
+    )
     svg = OUTPUT / "poisson-distributions.svg"
     svg.write_text("\n".join(line.rstrip() for line in svg.read_text().splitlines()) + "\n")
     plt.close(fig)
