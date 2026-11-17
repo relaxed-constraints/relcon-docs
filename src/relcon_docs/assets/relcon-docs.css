@@ -14,7 +14,8 @@
   --relcon-copy-text: #edf2f8;
 }
 
-.md-typeset button[data-md-copy-url] {
+.md-typeset button[data-md-copy-url],
+.md-typeset button.presentation-toggle {
   display: inline-flex;
   align-items: center;
   gap: 0.4em;

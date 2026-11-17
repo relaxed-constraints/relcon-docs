@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Use the same page-action typography and padding on presentation and ordinary pages.
+
 ## 0.1.3 — 2026-11-17
 
 - Match the presentation toggle icon size to the Copy as Markdown icon.

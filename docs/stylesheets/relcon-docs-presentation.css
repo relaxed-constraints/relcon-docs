@@ -100,18 +100,13 @@ body:has(.presentation-content.presentation-mode) .md-main .md-content > .md-con
   margin: 0;
 }
 
-/* Use identical outer dimensions despite the two controls' different defaults. */
+/* Group page actions without overriding their shared typography or padding. */
 .md-typeset .presentation-controls > button {
   box-sizing: border-box;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.25em;
-  height: 1.44rem;
-  padding: 0 0.52rem;
   margin: 0;
-  font-size: 0.56rem;
-  line-height: 1.4;
 }
 
 /* Share the title row, following the theme's normal page-action placement. */
