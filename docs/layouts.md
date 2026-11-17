@@ -12,9 +12,9 @@ image to enlarge it with the shared lightbox.
 
 <div class="grid" markdown>
 
-![Research workflow, first view](images/research-workflow.svg)
+![Poisson distributions, first view](images/poisson-distributions.png)
 
-![Research workflow, second view](images/research-workflow.svg)
+![Poisson distributions, second view](images/poisson-distributions.png)
 
 </div>
 
@@ -100,7 +100,7 @@ class to a paragraph while the neighbouring quotation remains unboxed.
 
 <div markdown>
 
-![Research workflow aligned left](images/research-workflow.svg){ align=left width="220" }
+![Poisson distributions aligned left](images/poisson-distributions.png){ align=left width="220" }
 
 This image uses `align=left` and a width of 220 pixels. Text flows beside the
 image when space permits. Use `align=right` to place it on the other side.
@@ -112,7 +112,7 @@ is useful when prose should wrap around a small illustration.
 <div style="clear: both;"></div>
 
 ```markdown
-![Research workflow](images/research-workflow.svg){ align=left width="220" }
+![Poisson distributions](images/poisson-distributions.png){ align=left width="220" }
 
 Text flows beside the image.
 ```
@@ -127,15 +127,15 @@ The empty clearing element above ends the float before the next example:
 
 <figure markdown="span">
 
-![Research workflow with caption](images/research-workflow.svg){ width="360" loading=lazy }
+![Poisson distributions with caption](images/poisson-distributions.png){ width="360" loading=lazy }
 
-<figcaption>A workflow diagram, sized with an attribute list and loaded lazily.</figcaption>
+<figcaption>Poisson probability distributions, sized with an attribute list and loaded lazily.</figcaption>
 </figure>
 
 ```markdown
 <figure markdown="span">
 
-![Research workflow](images/research-workflow.svg){ width="360" loading=lazy }
+![Poisson distributions](images/poisson-distributions.png){ width="360" loading=lazy }
 
 <figcaption>A short explanation of the figure.</figcaption>
 </figure>

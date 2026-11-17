@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Replace image examples with a reproducible Matplotlib Poisson plot, supplied
+  as PNG and SVG with a standalone generation script.
+
 - Enable attribute lists, Markdown in HTML, definition lists and footnotes, with
   a Layouts showcase for grids, image alignment and richer Markdown.
 
