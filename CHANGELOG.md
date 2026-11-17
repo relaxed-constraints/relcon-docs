@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.1.2 — 2026-11-17
+
 - Label the presentation sidebar “Table of contents”, restoring the normal title
   when presentation mode is inactive.
 
