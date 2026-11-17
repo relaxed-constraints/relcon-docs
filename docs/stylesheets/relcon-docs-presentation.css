@@ -342,3 +342,8 @@ body:has(.presentation-content.presentation-mode) .md-nav--secondary .presentati
 body:has(.presentation-content.presentation-mode) .md-nav--secondary {
   font-size: 0.756rem;
 }
+
+/* Keep heading anchors usable by the TOC without displaying permalink symbols. */
+.presentation-content.presentation-mode .headerlink {
+  display: none;
+}
