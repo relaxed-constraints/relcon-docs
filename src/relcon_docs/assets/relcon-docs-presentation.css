@@ -40,7 +40,7 @@ body:has(.presentation-content.presentation-mode) .md-main .md-content > .md-con
 }
 
 .md-typeset .presentation-content.presentation-mode {
-  font-size: clamp(0.9rem, 0.75rem + 0.4vw, 1.1rem);
+  font-size: clamp(0.972rem, 0.81rem + 0.432vw, 1.188rem);
   line-height: 1.65;
 }
 
@@ -333,4 +333,12 @@ body:has(.presentation-content.presentation-mode) .md-nav--secondary .presentati
     display: contents;
   }
   .presentation-content.presentation-mode > hr { display: block; }
+}
+
+/* A modest presentation-only increase for the fixed-size interface text too. */
+.presentation-content.presentation-mode .presentation-toggle,
+.presentation-content.presentation-mode .presentation-position,
+.presentation-content.presentation-mode .presentation-nav [data-section-count],
+body:has(.presentation-content.presentation-mode) .md-nav--secondary {
+  font-size: 0.756rem;
 }

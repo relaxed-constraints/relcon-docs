@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Slightly enlarge presentation text, including its table of contents and controls.
+
 - Style only the first heading of each slide (H1–H6) as its title in presentation mode, preserving subsection sizes and the normal page hierarchy.
 
 - Hide the site footer while presenting.
