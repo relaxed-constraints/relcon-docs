@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Enable Mark and Tilde Markdown extensions for highlighting, strikethrough and subscripts.
+
 ## 0.1.5 — 2026-11-17
 
 - Hide heading permalink symbols in presentation mode.

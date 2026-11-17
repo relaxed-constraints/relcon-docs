@@ -375,6 +375,7 @@ def test_richer_markdown_renders_with_shared_defaults(tmp_path):
         '![First](image.svg){ width="220" align=left loading=lazy }\n\n'
         "![Second](image.svg)\n\n</div>\n\n"
         "Baseline\n:   Reference configuration.\n\n"
+        "==Important finding== and ~~Old claim~~. H~2~O.\n\n"
         "A qualified claim.[^note]\n\n[^note]: Supporting detail.\n"
     )
     (tmp_path / "docs/image.svg").write_text(
@@ -397,3 +398,6 @@ def test_richer_markdown_renders_with_shared_defaults(tmp_path):
     assert "<dd>Reference configuration.</dd>" in html
     assert 'href="#fn:note"' in html
     assert 'href="#fnref:note"' in html
+    assert "<mark>Important finding</mark>" in html
+    assert "<del>Old claim</del>" in html
+    assert "H<sub>2</sub>O" in html

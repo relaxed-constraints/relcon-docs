@@ -27,6 +27,22 @@ Read the [diagram guide](diagrams.md).
 Use **bold** for emphasis, *italics* for a term, and `code` for identifiers.
 Read the [diagram guide](diagrams.md).
 
+## Highlighting and strikethrough
+
+Use `==text==` to highlight a finding and `~~text~~` to cross out an old statement.
+The shared configuration enables `pymdownx.mark` and `pymdownx.tilde`, supported by
+[Zensical](https://zensical.org/docs/compatibility/markdown/python-markdown-extensions/#caret-mark-tilde).
+
+```markdown
+==The revised query uses the index.==
+~~The query scans the entire collection.~~
+```
+
+==The revised query uses the index.==
+~~The query scans the entire collection.~~
+
+Tilde also supports subscripts: `H~2~O` renders as H~2~O.
+
 ## Lists
 
 ```markdown
