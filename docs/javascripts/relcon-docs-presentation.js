@@ -87,7 +87,11 @@
     const state = pageSlides.get(page);
     slides = state.groups;
     active = state.active;
-    targets = slides.map(slide => slide.querySelector('h1,h2,h3,h4,h5,h6'));
+    targets = slides.map(slide => {
+      const heading = slide.querySelector('h1,h2,h3,h4,h5,h6');
+      heading?.classList.add('presentation-slide-title');
+      return heading;
+    });
     const linked = hashTarget();
     if (linked) {
       const index = slides.findIndex(slide => slide.contains(linked));

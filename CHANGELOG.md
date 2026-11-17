@@ -2,7 +2,7 @@
 
 ## Unreleased
 
-- Give H2 headings the same size and spacing as H1 in presentation mode, preserving the normal page hierarchy.
+- Style only the first heading of each slide (H1–H6) as its title in presentation mode, preserving subsection sizes and the normal page hierarchy.
 
 - Hide the site footer while presenting.
 

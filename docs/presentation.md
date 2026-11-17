@@ -33,7 +33,7 @@ Copy as Markdown button, and keeps the right-hand table of contents on desktop.
 The table of contents and section controls appear as floating panels. The sidebar
 title changes from “On this page” to “Table of contents” while presenting.
 
-Use one H1 for the page title and H2 headings for subsequent sections. In presentation mode, H2 headings use the same size and spacing as H1; normal mode keeps the usual heading hierarchy.
+Use one H1 for the page title and H2 headings for subsequent sections. In presentation mode, the first heading in each slide (H1–H6) uses H1 title styling. Later headings retain their subsection sizes; normal mode keeps the usual heading hierarchy.
 
 Presentation mode shows only the current section. Long sections scroll naturally;
 the arrows switch sections and return to the top. Turning presentation mode off

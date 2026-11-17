@@ -57,9 +57,13 @@ body:has(.presentation-content.presentation-mode) .md-main .md-content > .md-con
   line-height: 1.25;
 }
 
-/* Keep semantic H2 sections while giving slide titles the H1 treatment. */
-.md-typeset .presentation-content.presentation-mode :is(h1, h2) {
+/* Style the navigation target as the title without changing heading semantics. */
+.md-typeset .presentation-content.presentation-mode .presentation-slide-title {
   font-size: 1.875em;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.025em;
+  color: var(--md-default-fg-color);
   margin: 0 0 1.25em;
   padding: 0;
 }
