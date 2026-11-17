@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Enable attribute lists, Markdown in HTML, definition lists and footnotes, with
+  a Layouts showcase for grids, image alignment and richer Markdown.
+
 ## 0.1.4 — 2026-11-17
 
 - Use the same page-action typography and padding on presentation and ordinary pages.

@@ -33,6 +33,10 @@ theme:
       icon: lucide/moon
       name: Switch to system preference
 markdown_extensions:
+  attr_list: {}
+  md_in_html: {}
+  def_list: {}
+  footnotes: {}
   toc:
     permalink: true
     permalink_title: Link to this section

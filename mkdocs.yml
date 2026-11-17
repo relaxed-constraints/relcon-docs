@@ -7,5 +7,6 @@ nav:
   - Markdown: markdown.md
   - Diagrams: diagrams.md
   - Figures: figures.md
+  - Layouts: layouts.md
   - Equations: equations.md
   - Presentation mode: presentation.md

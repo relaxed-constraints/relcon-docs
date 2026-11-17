@@ -363,3 +363,37 @@ def test_external_template_directory_is_rejected(tmp_path, directory):
     before = snapshot(tmp_path)
     assert run(tmp_path) == 2
     assert snapshot(tmp_path) == before
+
+
+def test_richer_markdown_renders_with_shared_defaults(tmp_path):
+    assert run(tmp_path) == 0
+    (tmp_path / "docs/index.md").write_text(
+        "# Layouts { #custom-title }\n\n"
+        '<div class="grid cards" markdown>\n\n'
+        "- **First card**\n\n- **Second card**\n\n</div>\n\n"
+        '<div class="grid" markdown>\n\n'
+        '![First](image.svg){ width="220" align=left loading=lazy }\n\n'
+        "![Second](image.svg)\n\n</div>\n\n"
+        "Baseline\n:   Reference configuration.\n\n"
+        "A qualified claim.[^note]\n\n[^note]: Supporting detail.\n"
+    )
+    (tmp_path / "docs/image.svg").write_text(
+        '<svg xmlns="http://www.w3.org/2000/svg" width="100" height="50"></svg>'
+    )
+    result = subprocess.run(
+        ["zensical", "build", "--strict"], cwd=tmp_path, capture_output=True, text=True
+    )
+    assert result.returncode == 0, result.stdout + result.stderr
+    html = (tmp_path / "site/index.html").read_text()
+    assert 'id="custom-title"' in html
+    assert '<div class="grid cards">' in html
+    assert "<strong>First card</strong>" in html
+    assert '<div class="grid">' in html
+    assert 'width="220"' in html
+    assert 'align="left"' in html
+    assert 'loading="lazy"' in html
+    assert html.count('class="glightbox"') == 2
+    assert "<dt>Baseline</dt>" in html
+    assert "<dd>Reference configuration.</dd>" in html
+    assert 'href="#fn:note"' in html
+    assert 'href="#fnref:note"' in html
