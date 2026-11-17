@@ -28,7 +28,7 @@ the image. Captions are written explicitly; numbering is not automatic.
 <figure>
   <img src="images/poisson-distributions.png"
        alt="Poisson distributions with mean rates from one to eight; peaks shift right as the rate increases."
-       width="1100" height="800">
+       width="900">
   <figcaption>Figure 1. Poisson distributions for mean rates 1–8. Dots mark integer outcomes; ribbons are visual guides.</figcaption>
 </figure>
 ```
@@ -36,7 +36,7 @@ the image. Captions are written explicitly; numbering is not automatic.
 <figure>
   <img src="images/poisson-distributions.png"
        alt="Poisson distributions with mean rates from one to eight; peaks shift right as the rate increases."
-       width="1100" height="800">
+       width="900">
   <figcaption>Figure 1. Poisson distributions for mean rates 1–8. Dots mark integer outcomes; ribbons are visual guides.</figcaption>
 </figure>
 
