@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.1.1 — 2026-11-17
+
 - Enable built-in image lightboxes across documentation sites, including zoom
   controls, without additional dependencies or image markup.
 - Recommend a bounded dependency range and document explicit lockfile upgrades.
