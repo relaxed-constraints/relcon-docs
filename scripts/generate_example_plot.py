@@ -57,12 +57,14 @@ def main():
         transparent=True,
         bbox_inches="tight",
         pad_inches=0.15,
+        bbox_extra_artists=(ax.zaxis.label,),
     )
     fig.savefig(
         OUTPUT / "poisson-distributions.svg",
         transparent=True,
         bbox_inches="tight",
         pad_inches=0.15,
+        bbox_extra_artists=(ax.zaxis.label,),
         metadata={"Date": None},
     )
     svg = OUTPUT / "poisson-distributions.svg"
