@@ -43,6 +43,32 @@ The shared configuration enables `pymdownx.mark` and `pymdownx.tilde`, supported
 
 Tilde also supports subscripts: `H~2~O` renders as H~2~O.
 
+## Arrows and smart symbols
+
+SmartSymbols converts short sequences into typographic symbols in ordinary text.
+Use two hyphens: `-->` becomes →, `<--` becomes ←, and `<-->` becomes ↔.
+Single-hyphen forms such as `->` and `<->` remain unchanged.
+
+```markdown
+Prepare --> Run --> Analyse
+Client <--> Database
+```
+
+Prepare --> Run --> Analyse
+
+Client <--> Database
+
+Inline code and fenced code blocks keep the literal syntax. Other enabled
+replacements include `(c)` for ©, `(tm)` for ™ and `+/-` for ±.
+See [SmartSymbols](https://facelessuser.github.io/pymdown-extensions/extensions/smartsymbols/)
+for all symbols and options. Project-specific overrides belong in `mkdocs.yml`:
+
+```yaml
+markdown_extensions:
+  pymdownx.smartsymbols:
+    ordinal_numbers: false
+```
+
 ## Lists
 
 ```markdown

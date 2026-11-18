@@ -40,6 +40,23 @@ def test_dry_run_and_check_never_write(tmp_path, capsys):
     assert snapshot(tmp_path) == {}
 
 
+def test_shared_smart_symbols_preserve_code(tmp_path):
+    import markdown
+
+    assert run(tmp_path) == 0
+    config = yaml.safe_load((tmp_path / cli.BASE).read_text())
+    options = config["markdown_extensions"]["pymdownx.smartsymbols"]
+    rendered = markdown.markdown(
+        "--> <-- <--> -> <->\n\n`-->`\n\n```text\n<-->\n```",
+        extensions=["pymdownx.smartsymbols", "pymdownx.superfences"],
+        extension_configs={"pymdownx.smartsymbols": options},
+    )
+    decoded = html_module.unescape(rendered)
+    assert "→ ← ↔ -> <->" in decoded
+    assert "<code>--></code>" in decoded
+    assert "<-->" in decoded.split("<pre>", 1)[1]
+
+
 @pytest.mark.parametrize("deleted", [False, True])
 def test_manual_edit_or_deletion_blocks_entire_update(tmp_path, deleted):
     assert run(tmp_path) == 0

@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- Enable SmartSymbols in shared defaults for short arrow syntax (`-->`, `<--`,
+  `<-->`) and other typographic symbols.
+
 ## 0.1.6 — 2026-11-17
 
 - Enable Mark and Tilde Markdown extensions for highlighting, strikethrough and subscripts.

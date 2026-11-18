@@ -45,6 +45,7 @@ markdown_extensions:
   admonition: {}
   pymdownx.mark: {}
   pymdownx.tilde: {}
+  pymdownx.smartsymbols: {}
   pymdownx.details: {}
   pymdownx.highlight: {}
   pymdownx.superfences:
