@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 0.1.7 — 2026-11-18
+
 - Enable SmartSymbols in shared defaults for short arrow syntax (`-->`, `<--`,
   `<-->`) and other typographic symbols.
 
